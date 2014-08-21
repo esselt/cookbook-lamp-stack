@@ -1,0 +1,90 @@
+<VirtualHost <%= @params[:listen_address] || '*' %>:<%= @params[:http_port] || '80' %>>
+
+ServerName <%= @params[:server_name] %>
+ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end if @params[:server_aliases] %>
+DocumentRoot <%= @params[:docroot] %>
+RewriteEngine On
+
+<Directory <%= @params[:docroot] %>>
+    Options <%= [@params[:directory_options] || "FollowSymLinks" ].flatten.join " " %>
+    AllowOverride <%= [@params[:allow_override] || "None" ].flatten.join " " %>
+    Order allow,deny
+    Allow from all
+</Directory>
+
+<Directory />
+Options FollowSymLinks
+AllowOverride None
+</Directory>
+
+<Location /server-status>
+SetHandler server-status
+
+Order Deny,Allow
+Deny from all
+Allow from 127.0.0.1
+</Location>
+
+LogLevel info
+ErrorLog <%= @params[:logroot] %>/error.log
+CustomLog <%= @params[:logroot] %>/access.log combined
+
+<% if @params[:directory_index] -%>
+    DirectoryIndex <%= [@params[:directory_index]].flatten.join " " %>
+<% end -%>
+
+RewriteEngine On
+RewriteLog <%= @params[:logroot] %>/rewrite.log
+RewriteLogLevel 0
+
+</VirtualHost>
+
+<% if @params[:https_enabled] -%>
+<VirtualHost <%= @params[:listen_address] || '*' %>:<%= @params[:https_port] || '443' %>>
+
+ServerName <%= @params[:server_name] %>
+ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end if @params[:server_aliases] %>
+DocumentRoot <%= @params[:docroot] %>
+RewriteEngine On
+
+<Directory <%= @params[:docroot] %>>
+    Options <%= [@params[:directory_options] || "FollowSymLinks" ].flatten.join " " %>
+    AllowOverride <%= [@params[:allow_override] || "None" ].flatten.join " " %>
+    Order allow,deny
+    Allow from all
+</Directory>
+
+<Directory />
+Options FollowSymLinks
+AllowOverride None
+</Directory>
+
+<Location /server-status>
+SetHandler server-status
+
+Order Deny,Allow
+Deny from all
+Allow from 127.0.0.1
+</Location>
+
+LogLevel info
+ErrorLog <%= @params[:logroot] %>/error_ssl.log
+CustomLog <%= @params[:logroot] %>/access_ssl.log combined
+
+<% if @params[:directory_index] -%>
+    DirectoryIndex <%= [@params[:directory_index]].flatten.join " " %>
+<% end -%>
+
+RewriteEngine On
+RewriteLog <%= @params[:logroot] %>/rewrite_ssl.log
+RewriteLogLevel 0
+
+SSLEngine on
+SSLCertificateFile <%= @params[:ssl_cert] %>
+SSLCertificateKeyFile <%= @params[:ssl_key] %>
+<% if @params[:ssl_chain] -%>
+    SSLCertificateChainFile <%= @params[:ssl_chain] %>
+<% end -%>
+
+</VirtualHost>
+<% end -%>
