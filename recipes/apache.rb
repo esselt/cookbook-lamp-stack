@@ -63,8 +63,8 @@ node['lamp-stack']['websites'].each do |url, params|
   end
 
   web_app url do
-    template node['lamp-stack']['vhost_template']
-    cookbook node['lamp-stack']['template_cookbook']
+    template params['vhost_template'] || node['lamp-stack']['vhost_template']
+    cookbook params['vhost_cookbook'] || node['lamp-stack']['template_cookbook']
 
     http_port         params['http_port']
     server_name       url
