@@ -78,7 +78,7 @@ node['lamp-stack']['websites'].each do |url, params|
     https_port        params['https_port']
     ssl_cert          params['ssl_cert']
     ssl_key           params['ssl_key']
-    settings          params['settings']
+    other             params['other']
     enable            !!params['enable'] unless params['enable'].is_a?(NilClass)
   end
 
