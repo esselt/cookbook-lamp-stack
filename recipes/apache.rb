@@ -29,6 +29,8 @@ start_gid = node['lamp-stack']['start_gid']
 web_path = node['lamp-stack']['websites_path']
 web_user = node['apache']['user']
 node['lamp-stack']['websites'].each do |url, params|
+  include_recipe 'apache2::mod_ssl' if !!params['https_enabled']
+
   members = []
   params['owners'].each do |member|
     members << member if node[:etc][:passwd].has_key?(member)
@@ -64,26 +66,20 @@ node['lamp-stack']['websites'].each do |url, params|
     template node['lamp-stack']['vhost_template']
     cookbook node['lamp-stack']['template_cookbook']
 
-    http_port         params['http_port'] if params['http_port']
+    http_port         params['http_port']
     server_name       url
     server_aliases    params['aliases']
-    listen_address    params['listen_address'] if params['listen_address']
+    listen_address    params['listen_address']
     docroot           "#{web_path}/#{url}/web"
     logroot           "#{web_path}/#{url}/log"
-    directory_options params['directory_options'] if params['directory_options']
-    allow_override    params['allow_override'] if params['allow_override']
-    enable            params['enable'] if params['enable'].is_a?(FalseClass)
-
-    if params['https_enabled']
-      include_recipe 'apache2::mod_ssl'
-
-      https_enabled true
-      https_port    params['https_port'] if params['https_port']
-      ssl_cert      params['ssl_cert']
-      ssl_key       params['ssl_key']
-    end
-
-    settings        params['settings'] if params['settings']
+    directory_options params['directory_options']
+    allow_override    params['allow_override']
+    https_enabled     !!params['https_enabled']
+    https_port        params['https_port']
+    ssl_cert          params['ssl_cert']
+    ssl_key           params['ssl_key']
+    settings          params['settings']
+    enable            !!params['enable'] unless params['enable'].is_a?(NilClass)
   end
 
   logrotate_app "apache2-#{url}" do
