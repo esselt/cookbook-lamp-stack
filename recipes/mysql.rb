@@ -7,12 +7,18 @@
 # All rights reserved - Do Not Redistribute
 #
 
-%w(mysql::server database::mysql).each do |recipe|
-  include_recipe recipe
-end
-
 node['lamp-stack']['mysql_packages'].each do |pkg|
   package pkg
+end
+
+unless node['mysql']['server_root_password']
+  node.set['mysql']['server_root_password'] = ([nil]*24).map { ((48..57).to_a+(65..90).to_a+(97..122).to_a).sample.chr }.join
+end
+
+mysql_service 'default' do
+  port 3306
+  initial_root_password node['mysql']['server_root_password']
+  action [:create, :start]
 end
 
 mysql_connection = {

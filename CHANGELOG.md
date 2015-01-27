@@ -3,6 +3,10 @@ CHANGELOG
 
 This file is used to list changes made in each version of the lamp-stack cookbook.
 
+0.2.2
+-----
+- [Boye Holden] - Updated to match new mysql_service provider
+
 0.2.1
 -----
 - [Boye Holden] - Cleaned up the code a bit
