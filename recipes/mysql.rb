@@ -16,7 +16,7 @@ unless node['mysql']['server_root_password']
 end
 
 mysql_service 'default' do
-  port 3306
+  port '3306'
   initial_root_password node['mysql']['server_root_password']
   action [:create, :start]
 end
