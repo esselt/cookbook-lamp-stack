@@ -22,7 +22,7 @@ mysql_service 'default' do
 end
 
 mysql_connection = {
-  :host     => 'localhost',
+  :host     => '127.0.0.1',
   :username => 'root',
   :password => node['mysql']['server_root_password']
 }
