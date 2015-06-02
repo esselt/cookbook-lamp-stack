@@ -4,9 +4,9 @@ maintainer_email 'boye.holden@hist.no'
 license          'Apache 2.0'
 description      'Installs/Configures lamp-stack'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.2'
+version          '0.2.3'
 
-%w(logrotate database mysql apache2 php memcached).each do |pkg|
+%w(logrotate database mysql apache2 php memcached mysql2_chef_gem).each do |pkg|
   depends pkg
 end
 

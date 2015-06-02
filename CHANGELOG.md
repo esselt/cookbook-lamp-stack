@@ -3,6 +3,10 @@ CHANGELOG
 
 This file is used to list changes made in each version of the lamp-stack cookbook.
 
+0.2.3
+-----
+- [Boye Holden] - Updated to use mysql2_chef_gem for mysql database creation
+
 0.2.2
 -----
 - [Boye Holden] - Updated to match new mysql_service provider

@@ -7,6 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+mysql2_chef_gem 'default' do
+  action :install
+end
+
 node['lamp-stack']['mysql_packages'].each do |pkg|
   package pkg
 end
