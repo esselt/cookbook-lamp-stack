@@ -25,6 +25,23 @@ mysql_service 'default' do
   action [:create, :start]
 end
 
+# remove default logrotate
+logrotate_app 'mysql-server' do
+  enable false
+end
+
+# set up logrotate
+logrotate_app 'mysql-default' do
+  path '/var/log/mysql-default/*.log'
+  frequency 'weekly'
+  rotate '6'
+  options ['missingok', 'compress', 'notifempty']
+  sharedscripts true
+  create '644 mysql mysql'
+  postrotate "[ -f /run/mysql-default/mysql-pid ] && kill -HUP `cat /run/mysql-default/mysql-pid`"
+  enable true
+end
+
 mysql_connection = {
   :host     => '127.0.0.1',
   :username => 'root',
