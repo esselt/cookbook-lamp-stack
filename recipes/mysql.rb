@@ -38,7 +38,7 @@ logrotate_app 'mysql-default' do
   options ['missingok', 'compress', 'notifempty']
   sharedscripts true
   create '644 mysql mysql'
-  postrotate "[ -f /run/mysql-default/mysql-pid ] && kill -HUP `cat /run/mysql-default/mysql-pid`"
+  postrotate "[ -f /run/mysql-default/mysqld.pid ] && kill -HUP `cat /run/mysql-default/mysqld.pid`"
   enable true
 end
 
