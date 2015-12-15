@@ -3,6 +3,10 @@ CHANGELOG
 
 This file is used to list changes made in each version of the lamp-stack cookbook.
 
+0.2.6
+-----
+- [Boye Holden] - Removed RewriteLog which is no longer active in Apache 2.4
+
 0.2.5
 -----
 - [Boye Holden] - Added default attributes for websites and databases

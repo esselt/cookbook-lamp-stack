@@ -31,10 +31,6 @@
     ErrorLog <%= @params[:logroot] %>/error.log
     CustomLog <%= @params[:logroot] %>/access.log combined
 
-    RewriteEngine On
-    RewriteLog <%= @params[:logroot] %>/rewrite.log
-    RewriteLogLevel 0
-
 </VirtualHost>
 
 <% if @params[:https_enabled] -%>
@@ -70,10 +66,6 @@
     LogLevel info
     ErrorLog <%= @params[:logroot] %>/error_ssl.log
     CustomLog <%= @params[:logroot] %>/access_ssl.log combined
-
-    RewriteEngine On
-    RewriteLog <%= @params[:logroot] %>/rewrite_ssl.log
-    RewriteLogLevel 0
 
     SSLEngine on
     SSLCertificateFile <%= @params[:ssl_cert] %>
