@@ -3,6 +3,10 @@ CHANGELOG
 
 This file is used to list changes made in each version of the lamp-stack cookbook.
 
+0.2.5
+-----
+- [Boye Holden] - Added default attributes for websites and databases
+
 0.2.4
 -----
 - [Boye Holden] - Added logrotate for mysql

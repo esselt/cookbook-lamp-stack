@@ -24,3 +24,5 @@ default['lamp-stack']['start_gid']          = 600
 default['lamp-stack']['websites_path']      = '/var/www'
 default['lamp-stack']['vhost_template']     = 'vhost.erb'
 default['lamp-stack']['template_cookbook']  = 'lamp-stack'
+default['lamp-stack']['databases']          = {}
+default['lamp-stack']['websites']           = {}
