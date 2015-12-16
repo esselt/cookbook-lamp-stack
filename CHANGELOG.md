@@ -3,6 +3,10 @@ CHANGELOG
 
 This file is used to list changes made in each version of the lamp-stack cookbook.
 
+0.2.7
+-----
+- [Boye Holden] - Specific template for ubuntu 14.04 (apache2)
+
 0.2.6
 -----
 - [Boye Holden] - Removed RewriteLog which is no longer active in Apache 2.4
