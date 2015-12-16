@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+node.set['apache']['mpm'] = 'prefork'
+
 %w(logrotate apache2 apache2::mod_php5 apache2::mod_rewrite).each do |recipe|
   include_recipe recipe
 end
