@@ -22,6 +22,7 @@ end
 mysql_service 'default' do
   port '3306'
   initial_root_password node['mysql']['server_root_password']
+  mysqld_options node['lamp-stack']['mysqld_options']
   action [:create, :start]
 end
 

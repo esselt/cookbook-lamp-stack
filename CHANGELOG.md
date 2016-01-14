@@ -3,6 +3,10 @@ CHANGELOG
 
 This file is used to list changes made in each version of the lamp-stack cookbook.
 
+0.2.8
+-----
+- [Boye Holden] - Added ability to use mysqld_options
+
 0.2.7
 -----
 - [Boye Holden] - Specific template for ubuntu 14.04 (apache2)

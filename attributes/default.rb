@@ -26,3 +26,4 @@ default['lamp-stack']['vhost_template']     = 'vhost.erb'
 default['lamp-stack']['template_cookbook']  = 'lamp-stack'
 default['lamp-stack']['databases']          = {}
 default['lamp-stack']['websites']           = {}
+default['lamp-stack']['mysqld_options']     = {}

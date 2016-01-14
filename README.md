@@ -33,6 +33,7 @@ All attributes used in apache2, database, mysql, php, memcached and logrotate ka
 * `node['lamp-stack']['websites_path']` - Default path where websites should be placed
 * `node['lamp-stack']['vhost_template']` - Template file to use for vhost
 * `node['lamp-stack']['template_cookbook']` - Cookbook that holds template file
+* `node['lamp-stack']['mysqld_options']` - Cookbook that holds template file
 
 Usage
 -----
@@ -47,6 +48,9 @@ Runs the apache, mysql and php recipe.
 Example role
 
       'lamp-stack' => {
+        'mysqld_options' => {                        # OPTIONAL, add options under my.cnf section [mysqld]
+            'option' => 'value'
+        },
         'websites' => {
           'first.websi.te' => {
             'owners' => ['user1', 'user2'],          # Users on the webserver that should be in the website group
