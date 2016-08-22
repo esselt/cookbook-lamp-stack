@@ -3,6 +3,10 @@ CHANGELOG
 
 This file is used to list changes made in each version of the lamp-stack cookbook.
 
+0.2.9
+-----
+- [Boye Holden] - BUGFIX: mysql cookbook hardcode package versions, do not use these
+
 0.2.8
 -----
 - [Boye Holden] - Added ability to use mysqld_options
